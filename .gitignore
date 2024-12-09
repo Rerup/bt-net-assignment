@@ -461,3 +461,6 @@ $RECYCLE.BIN/
 # Ignore IDE
 .idea/
 .vs/
+
+# Ignore db
+*.db

@@ -23,9 +23,6 @@ namespace ProductApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -36,6 +33,9 @@ namespace ProductApi.Migrations
                         .HasColumnType("string");
 
                     b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ProductCategoryId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

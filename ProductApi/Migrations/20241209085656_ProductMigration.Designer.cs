@@ -11,7 +11,7 @@ using ProductApi.Data;
 namespace ProductApi.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20241206142844_ProductMigration")]
+    [Migration("20241209085656_ProductMigration")]
     partial class ProductMigration
     {
         /// <inheritdoc />
@@ -26,9 +26,6 @@ namespace ProductApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -39,6 +36,9 @@ namespace ProductApi.Migrations
                         .HasColumnType("string");
 
                     b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ProductCategoryId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

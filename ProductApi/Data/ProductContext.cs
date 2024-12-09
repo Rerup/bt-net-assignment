@@ -1,6 +1,7 @@
 using System;
 using Domain.Products;
 using Microsoft.EntityFrameworkCore;
+using ProductApi.Data.Seeders;
 
 namespace ProductApi.Data;
 
@@ -16,22 +17,11 @@ public class ProductContext : DbContext
         Database.EnsureCreated();
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
-        var electronicsCategoryId = Guid.NewGuid();
-        var booksCategoryId = Guid.NewGuid();
-
-        modelBuilder.Entity<ProductCategory>().HasData(
-            new ProductCategory { Id = electronicsCategoryId, Name = "Electronics" },
-            new ProductCategory { Id = booksCategoryId, Name = "Books" }
-        );
-
-        modelBuilder.Entity<Product>().HasData(
-            new Product { Id = Guid.NewGuid(), Name = "T-Shirt", Price = 99.95m, ProductCategoryId = electronicsCategoryId },
-            new Product { Id = Guid.NewGuid(), Name = "Necklace Unisex", Price = 129.95m, ProductCategoryId = electronicsCategoryId },
-            new Product { Id = Guid.NewGuid(), Name = "Silver Ring", Price = 89.95m, ProductCategoryId = booksCategoryId }
-        );
+        optionsBuilder
+            .UseSqlite("Data Source=products.db")
+            .UseSeeding((context, _) => ProductContextSeeder.Seed(this))
+            .UseAsyncSeeding(async (context, _, cancellationToken) => await ProductContextSeeder.SeedAsync(this, cancellationToken));
     }
 }

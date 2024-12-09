@@ -31,7 +31,7 @@ namespace ProductApi.Migrations
                     Name = table.Column<string>(type: "string", maxLength: 100, nullable: false),
                     Price = table.Column<decimal>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    ProductCategoryId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -11,7 +11,7 @@ using ProductApi.Data;
 namespace ProductApi.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20241209085656_ProductMigration")]
+    [Migration("20241209121634_ProductMigration")]
     partial class ProductMigration
     {
         /// <inheritdoc />
@@ -39,9 +39,12 @@ namespace ProductApi.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("ProductCategoryId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasAnnotation("Relational:JsonPropertyName", "product_category_id");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductCategoryId");
 
                     b.ToTable("Products");
                 });
@@ -60,6 +63,22 @@ namespace ProductApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductCategories");
+                });
+
+            modelBuilder.Entity("Domain.Products.Product", b =>
+                {
+                    b.HasOne("Domain.Products.ProductCategory", "ProductCategory")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductCategory");
+                });
+
+            modelBuilder.Entity("Domain.Products.ProductCategory", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

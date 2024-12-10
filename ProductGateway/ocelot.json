@@ -1,7 +1,7 @@
 {
     "Routes": [
         {
-            "DownstreamPathTemplate": "/api/v1/products/{guid}",
+            "DownstreamPathTemplate": "/api/{version}/products/{guid}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
@@ -9,7 +9,7 @@
                     "Port": 5245
                 }
             ],
-            "UpstreamPathTemplate": "/products/{guid}",
+            "UpstreamPathTemplate": "/{version}/products/{guid}",
             "UpstreamHttpMethod": [
                 "Get"
             ],
@@ -18,7 +18,7 @@
             }
         },
         {
-            "DownstreamPathTemplate": "/api/v1/products",
+            "DownstreamPathTemplate": "/api/{version}/products",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
@@ -26,7 +26,7 @@
                     "Port": 5245
                 }
             ],
-            "UpstreamPathTemplate": "/products",
+            "UpstreamPathTemplate": "/{version}/products",
             "UpstreamHttpMethod": [
                 "Get"
             ],
@@ -35,7 +35,7 @@
             }
         },
         {
-            "DownstreamPathTemplate": "/api/v1/products",
+            "DownstreamPathTemplate": "/api/{version}/products",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
@@ -43,13 +43,13 @@
                     "Port": 5245
                 }
             ],
-            "UpstreamPathTemplate": "/products",
+            "UpstreamPathTemplate": "/{version}/products/create",
             "UpstreamHttpMethod": [
                 "Post"
             ]
         },
         {
-            "DownstreamPathTemplate": "/api/v1/products/{guid}",
+            "DownstreamPathTemplate": "/api/{version}/products/{guid}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
@@ -57,7 +57,7 @@
                     "Port": 5245
                 }
             ],
-            "UpstreamPathTemplate": "/products/{guid}",
+            "UpstreamPathTemplate": "/{version}/products/{guid}",
             "UpstreamHttpMethod": [
                 "Delete",
                 "Put"

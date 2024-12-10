@@ -44,6 +44,8 @@ public class EntityFrameworkRepository<T> : IRepository<T> where T : class
 
     public async Task<T> UpdateAsync(T existingEntity, T newEntity)
     {
+        _context.Entry(newEntity).Property("Id").CurrentValue = _context.Entry(existingEntity).Property("Id").CurrentValue;
+
         _context.Entry(existingEntity).State = EntityState.Modified;
 
         _context.Entry(existingEntity).CurrentValues.SetValues(newEntity);

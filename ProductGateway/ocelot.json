@@ -9,10 +9,13 @@
                     "Port": 5245
                 }
             ],
-            "UpstreamPathTemplate": "/gateway/products/{guid}",
+            "UpstreamPathTemplate": "/products/{guid}",
             "UpstreamHttpMethod": [
                 "Get"
-            ]
+            ],
+            "FileCacheOptions": {
+                "TtlSeconds": 60
+            }
         },
         {
             "DownstreamPathTemplate": "/api/v1/products",
@@ -23,9 +26,25 @@
                     "Port": 5245
                 }
             ],
-            "UpstreamPathTemplate": "/gateway/products",
+            "UpstreamPathTemplate": "/products",
             "UpstreamHttpMethod": [
-                "Get",
+                "Get"
+            ],
+            "FileCacheOptions": {
+                "TtlSeconds": 60
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/api/v1/products",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5245
+                }
+            ],
+            "UpstreamPathTemplate": "/products",
+            "UpstreamHttpMethod": [
                 "Post"
             ]
         },
@@ -38,7 +57,7 @@
                     "Port": 5245
                 }
             ],
-            "UpstreamPathTemplate": "/gateway/products/{guid}",
+            "UpstreamPathTemplate": "/products/{guid}",
             "UpstreamHttpMethod": [
                 "Delete",
                 "Put"

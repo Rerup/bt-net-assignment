@@ -3,6 +3,9 @@ using ProductApi.Data;
 using ProductApi.Services.ProductService.Implementations;
 using ProductApi.Services.ProductService.Contract;
 using System.Text.Json;
+using ProductApi.Data.Repositories.Implementations;
+using ProductApi.Data.Repositories.Contracts;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -22,6 +25,8 @@ builder.Services.AddDbContext<ProductContext>(options =>
 });
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 

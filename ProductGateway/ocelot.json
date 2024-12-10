@@ -1,0 +1,51 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/v1/products/{guid}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5245
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/products/{guid}",
+            "UpstreamHttpMethod": [
+                "Get"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/v1/products",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5245
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/products",
+            "UpstreamHttpMethod": [
+                "Get",
+                "Post"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/v1/products/{guid}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5245
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/products/{guid}",
+            "UpstreamHttpMethod": [
+                "Delete",
+                "Put"
+            ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5097"
+    }
+}

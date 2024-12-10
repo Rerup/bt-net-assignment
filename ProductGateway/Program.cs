@@ -9,6 +9,8 @@ builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
+app.UseMiddleware<RequestTimingMiddleware>();
+
 await app.UseOcelot();
 
 app.Run();

@@ -5,6 +5,7 @@ using ProductApi.Services.ProductService.Contract;
 using System.Text.Json;
 using ProductApi.Data.Repositories.Implementations;
 using ProductApi.Data.Repositories.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,13 @@ builder.Services.AddDbContext<ProductContext>(options =>
 {
     options.UseSqlite(configuration.GetConnectionString("ProductDb"));
 });
+
+builder.Services.AddApiVersioning(options =>
+        {
+            options.ReportApiVersions = true;
+            options.AssumeDefaultVersionWhenUnspecified = true;
+            options.DefaultApiVersion = new ApiVersion(1, 0);
+        });
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EntityFrameworkRepository<>));

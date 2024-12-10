@@ -4,6 +4,9 @@ using ProductApi.Services.ProductService.Contract;
 
 namespace ProductApi.Controllers
 {
+    [Route("api/v{version:apiVersion}/")]
+    [Route("api/")] // backwards compatibility
+    [ApiVersion("1.0")]
     [ApiController]
     public class ProductController : ControllerBase
     {

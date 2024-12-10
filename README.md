@@ -1,32 +1,36 @@
-# Brand Tech .NET Assignment
-## Introduction
+# How to run
+- Run the whole solution in Visual Studio
+- Make sure API and Gateway is running
 
-This test is to test a candidates basic knowledge of .NET.
+ Now try and send a request to
+ 
+```bash
+http://localhost:5097/v1/products
+```
 
-Create a private repository with a copy of this repository and ask us for our usernames so you can invite us
+You can open the ocelot.json file in the ProductGateway project to see the defined routes.
 
-## The assignment
-Create a Products API which returns data using proper REST syntax, e.g.
+eg. 
+```bash
+GET: http://localhost:5097/v1/products
+GET: http://localhost:5097/v1/products/{guid}
+DELETE: http://localhost:5097/v1/products/{guid}
+POST: http://localhost:5097/v1/products/create
+```
 
-- `GET /products` should return a list of products
-- `GET /products/1` should return the product with id = 1
-- `POST /products` should create a product and return the path to said product
+The persistence layer is using GUID as PK, and therefore you should first find an ID and then call the remaining routes.
 
-You should use some sort of database and add seed functionality to add some initial dummy data.
+# Check the timed request
+See the x-time header to see the response time in ms.
+I recommend using Postman or something similar.
 
-You can use data from https://fakestoreapi.com/products if you can't come up with something yourself :)
+# Additional features
+- Repository pattern for increased maintainability
+- Introduced caching in the ProductGateway
+- Added API Versioning at API level and Gateway level
 
-Now, create a second service which stands as a gateway to the API, so calls comes through the gateway, routes to API,
-responds to user.
 
-E.g.:
-
-1. User requests `GET /api/products`
-2. Gateway receives the call and requests the products API
-   1. `GET /products`
-3. Products API returns data to gateway
-4. Gateway returns data to user.
-
-What communication type you use is up to you (HTTP, gRPC, etc.)
-
-As the last part, create a middleware in the gateway, which logs the time used to process the entire request
+# Additonal considerations
+- Adding Authentication and Authroization and enforce it at Gateway level
+- Adding RateLimitting at the Gateway level
+- Containerize the application, so that we can enforce isolation and make the API private.

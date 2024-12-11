@@ -34,3 +34,4 @@ I recommend using Postman or something similar.
 - Adding Authentication and Authroization and enforce it at Gateway level
 - Adding RateLimitting at the Gateway level
 - Containerize the application, so that we can enforce isolation and make the API private.
+- Make use of Minimal API due to being a small microservice
